@@ -1,0 +1,107 @@
+# Ignore les fichiers de Springboot 3
+HELP.md
+
+# Fichiers de build générés dans le backend
+Backend/target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+# Ignore les fichiers de log dans le Backend
+Backend/logs/
+
+# Fichiers temporaires générés par l'éditeur
+*.swp
+*.swo
+
+### STS (Spring Tool Suite) ###
+Backend/.apt_generated
+Backend/.classpath
+Backend/.factorypath
+Backend/.project
+Backend/.settings
+Backend/.springBeans
+Backend/.sts4-cache
+
+### IntelliJ IDEA ###
+Backend/.idea
+Backend/*.iws
+Backend/*.iml
+Backend/*.ipr
+
+### NetBeans ###
+Backend/nbproject/private/
+Backend/nbbuild/
+Backend/dist/
+Backend/nbdist/
+Backend/.nb-gradle/
+Backend/build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+# Fichiers de dépendances et configurations Maven/Gradle dans le Backend
+Backend/.mvn/
+Backend/.gradle/
+
+# Fichiers sensibles (clés, secrets, etc.) dans le Backend
+Backend/.env
+Backend/secrets/
+
+# MongoDB, fichiers de sauvegarde de base de données ou de journaux dans le Backend
+Backend/db/
+
+# Fichiers temporaires et caches spécifiques aux OS
+.DS_Store
+Thumbs.db
+
+# Ignore les fichiers de configuration de Backend (Spring Boot)
+Backend/application.properties
+Backend/application.yml
+
+
+# Ignore les fichiers de Angular
+
+
+# See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
+
+# Compiled output
+Frontend/dist
+Frontend/tmp
+Frontend/out-tsc
+Frontend/bazel-out
+
+# Node
+Frontend/node_modules
+Frontend/npm-debug.log
+Frontend/yarn-error.log
+
+# IDEs and editors
+.idea/
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# Visual Studio Code
+Frontend/.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/*
+
+# Miscellaneous
+Frontend/.angular/cache
+Frontend/.sass-cache/
+Frontend/connect.lock
+Frontend/coverage
+Frontend/libpeerconnection.log
+Frontend/testem.log
+Frontend/typings
+
+# System files
+.DS_Store
+Thumbs.db
