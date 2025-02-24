@@ -1,6 +1,9 @@
 import { Routes } from '@angular/router';
-import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
+import { AdminLoginComponent } from './admin/pages/admin-login/admin-login.component';
 import { AppComponent } from './app.component';
+import { AdminComponent } from './admin/admin.component';
+import { RankingComponent } from './admin/pages/ranking/ranking.component';
+import { TestComponent } from './admin/pages/test/test.component';
 
 export const routes: Routes = [
   {
@@ -9,6 +12,11 @@ export const routes: Routes = [
   },
   {
     path: 'admin',
-    children: [{ path: 'login', component: AdminLoginComponent }],
+    children: [
+      { path: '', component: AdminComponent },
+      { path: 'login', component: AdminLoginComponent },
+      { path: 'ranking', component: RankingComponent },
+      { path: 'test', component: TestComponent },
+    ],
   },
 ];

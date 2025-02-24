@@ -8,7 +8,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { AuthService } from '../auth-service/auth.service';
+import { AuthService } from '../../auth-service/auth.service';
 
 @Component({
   selector: 'app-admin-login',
