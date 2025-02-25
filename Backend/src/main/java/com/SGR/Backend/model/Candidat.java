@@ -7,31 +7,32 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.UUID;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Document(collection = "User")
+@Document(collection = "Candidat")
 @Getter
 @Setter
-public class User {
+public class Candidat {
 
     @Id
     private String id;
+
+    @JsonProperty("name")
+    @NotNull
+    private String name;
 
     @JsonProperty("email")
     @NotNull
     private String email;
 
-    @JsonProperty("password")
-    @NotNull
-    private String password;
+    @JsonProperty("telephone")
+    private String telephone;
 
- }
-
-
-
-
-
+    @DBRef
+    private List<TestResponse> testResponses; // Liste des tests passés
+}

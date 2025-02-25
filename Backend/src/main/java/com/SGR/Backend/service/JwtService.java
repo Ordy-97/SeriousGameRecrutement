@@ -26,7 +26,7 @@ public class JwtService {
                 .builder()
                 .claims()
                 .add(claims)
-                .subject(user.getName())
+                .subject(user.getEmail())
                 .issuer("SGR")
                 .issuedAt(new Date(System.currentTimeMillis()))
                 .expiration(new Date(System.currentTimeMillis()+ 60*10*1000))

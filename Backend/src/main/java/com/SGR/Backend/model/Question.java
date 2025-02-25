@@ -9,29 +9,29 @@ import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.UUID;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Document(collection = "User")
+@Document(collection = "Question")
 @Getter
 @Setter
-public class User {
+public class Question {
 
     @Id
     private String id;
 
-    @JsonProperty("email")
     @NotNull
-    private String email;
+    @JsonProperty("name")
+    private String name;
 
-    @JsonProperty("password")
     @NotNull
-    private String password;
+    @JsonProperty("questionType")
+    private QuestionType type; // Utilisation de l'Enum
 
- }
+    @JsonProperty("answers")
+    private List<Answer> answers; // Pour les QCM uniquement
 
-
-
-
-
+    @JsonProperty("correctAnswerId")
+    private String correctAnswerId; // Pour les QCM uniquement
+}

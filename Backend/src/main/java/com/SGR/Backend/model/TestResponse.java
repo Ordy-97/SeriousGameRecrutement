@@ -1,7 +1,5 @@
 package com.SGR.Backend.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,36 +8,25 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.Date;
-import java.util.List;
+import java.util.Map;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Document(collection = "Test")
 @Getter
 @Setter
-public class Test {
+public class TestResponse {
 
     @Id
     private String id;
 
-    @JsonProperty("name")
-    @NotNull
-    private String name;
-
-    @JsonProperty("createdAt")
-    @NotNull
-    private Date createdAt;
-
-    @JsonProperty("description")
-    private String description;
+    @DBRef
+    private Candidat candidat; // Candidat qui passe le test
 
     @DBRef
-    private List<Question> questions;
+    private Test test; // Le test passé
 
-    @DBRef
-    private User createdBy;
-
-
+    private Map<String, String> multipleChoiceAnswers; // Clé: ID de la question, Valeur: ID de la réponse choisie
+    private Map<String, String> openAnswers; // Clé: ID de la question, Valeur: réponse en texte libre
 
 }
