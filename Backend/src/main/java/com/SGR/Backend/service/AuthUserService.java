@@ -40,9 +40,8 @@ public class AuthUserService {
 
     public User RegisterUser(CredentialsDto credentialsDto) {
         User user = new User();
-        user.setName(credentialsDto.name());
+        user.setEmail(credentialsDto.name());
         user.setPassword(bCryptPasswordEncoder.encode(String.valueOf(credentialsDto.password())));
-        user.setAdmin(false);
         System.out.println(bCryptPasswordEncoder.matches(String.valueOf(credentialsDto.password()), user.getPassword()));
         return userRepository.save(user);
     }
@@ -60,7 +59,7 @@ public class AuthUserService {
         );
 
         if (authenticate.isAuthenticated()){
-            User user = userRepository.findUserByName(credentialsDto.name());
+            User user = userRepository.findUserByEmail(credentialsDto.name());
             return jwtService.generateToken(user);
         }
         return null;
