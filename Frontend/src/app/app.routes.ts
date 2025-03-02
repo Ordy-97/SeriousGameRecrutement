@@ -11,10 +11,13 @@ export const routes: Routes = [
     component: AppComponent,
   },
   {
+    path: 'admin/login',
+    component: AdminLoginComponent,
+  },
+  {
     path: 'admin',
+    component: AdminComponent,
     children: [
-      { path: '', component: AdminComponent },
-      { path: 'login', component: AdminLoginComponent },
       { path: 'ranking', component: RankingComponent },
       { path: 'test', component: TestComponent },
     ],

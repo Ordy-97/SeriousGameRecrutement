@@ -1,1 +1,30 @@
-<p>admin-sidebar works!</p>
+<div class="flex flex-col h-full w-full bg-white">
+  <div class="flex justify-left ml-3 mb-4 h-auto w-full  pb-3 pt-3">
+    <div class="flex w-5/10 h-full">
+      <img class="object-cover h-full w-full" src="assets/CGI_logo.svg" alt="" srcset="">
+    </div>
+  </div>
+  <div *ngFor="let menu of menuItems, let j= index" class="flex flex-col mt-2 pl-2 h-5/20 w-full">
+    <p class="font-bold ml-1 text-lg text-black ">
+      {{menu.title}}
+    </p>
+    <div *ngFor="let item of menu.elements; let i = index"
+      class="flex items-center w-3/4 gap-2 mt-1 mb-1 ml-4 cursor-pointer relative group" (mouseenter)="setHovered(i, j)"
+      (mouseleave)="resetHovered()" [routerLink]="item.path">
+      <ng-icon [name]="hoveredIndex===i && hoveredMenu===j? item.iconHover : item.iconDefault"
+        class="text-black"></ng-icon>
+      <p class="font-normal text-lg text-black " [class]="hoveredIndex===i && hoveredMenu===j? 'hover:font-bold': ''">
+        {{item.label}}</p>
+      <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-red-500 transition-all duration-300 group-hover:w-full"></span>
+    </div>
+  </div>
+  <div class="flex sticky h-2/20 mt-6 w-full pl-2 bottom-0">
+    <div class="flex items-center w-3/4 gap-2 mt-1 mb-1 ml-4 cursor-pointer relative group"
+      (mouseenter)="hoverLogOut = true" (mouseleave)="hoverLogOut = false">
+      <ng-icon [name]="hoverLogOut? 'remixLogoutBoxFill': 'remixLogoutBoxLine'  " class="text-black"></ng-icon>
+      <p class="font-normal text-lg text-black hover:font-bold ">Logout</p>
+      <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-red-500 transition-all duration-300 group-hover:w-full"></span>
+    </div>
+
+  </div>
+</div>
