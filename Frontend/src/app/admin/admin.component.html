@@ -1,1 +1,18 @@
-<router-outlet></router-outlet>
+<div class="flex flex-row h-screen w-full">
+
+  <div class="flex w-3/20 h-full ">
+    <div class="h-full w-full">
+      <app-admin-sidebar></app-admin-sidebar>
+    </div>
+  </div>
+
+  <div class="flex flex-col h-full w-17/20">
+    <div class="h-1/10 w-full ">
+      <app-admin-navbar [titlePage]="pageTitle"></app-admin-navbar>
+    </div>
+    <div class="h-9/10">
+      <router-outlet (activate)="setTitlePage($event)"></router-outlet>
+    </div>
+  </div>
+
+</div>
