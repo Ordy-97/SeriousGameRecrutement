@@ -1,6 +1,7 @@
 package com.SGR.Backend.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,6 +22,7 @@ public class Question {
     @Id
     private String id;
 
+    @NotBlank
     @NotNull
     @JsonProperty("name")
     private String name;
