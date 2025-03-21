@@ -56,6 +56,7 @@
 		    <groupId>org.springframework.security</groupId>
 		    <artifactId>spring-security-crypto</artifactId>
 		</dependency>
+
 		
 		<!-- Spring Boot Validation pour valider les entrées utilisateurs -->
 		<dependency>
