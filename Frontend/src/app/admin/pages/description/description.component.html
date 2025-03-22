@@ -7,12 +7,13 @@
 <div class="description-container">
   <h1>Test de Logique</h1>
   <p>
-    Ce test évalue votre capacité de raisonnement logique et analytique.
-    Vous aurez un temps limité pour répondre aux questions.
+    {{ steps[currentStep] }}
   </p>
 </div>
 
-<!-- Bouton centré en bas -->
+<!-- Bouton suivant ou commencer le test -->
 <div class="button-container">
-  <button (click)="startTest()">Commencer le Test</button>
+  <button (click)="nextStep()">
+    {{ currentStep < steps.length - 1 ? 'Suivant' : 'Commencer le Test' }}
+  </button>
 </div>
