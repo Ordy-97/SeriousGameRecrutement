@@ -1,0 +1,33 @@
+<div class="flex flex-col pt-5 h-full w-full gap-5">
+  <div class="h-1/10 w-full flex  justify-center items-center
+        md:justify-start md:items-center
+        lg:justify-start lg:items-center
+        xl:justify-start xl:items-center">
+    <div class="pt-4 w-full flex justify-center
+          md:justify-start md:pl-10
+          lg:justify-start lg:pl-14
+          xl:justify-start xl:pl-14">
+      <div class="flex gap-2 border-none items-center shadow-md shadow-black/10 p-3 rounded-[13px]
+            w-7/10
+            md:w-6/10
+            lg:w-5/10">
+        <input class="px-2 h-5 w-9/10 outline-none border-none" placeholder="Search" />
+        <ng-icon name="hugeSearch01"></ng-icon>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="flex items-center  justify-center h-9/10 w-full
+      md:justify-start md:pl-10
+      lg:justify-start lg:pl-14
+      xl:justify-start xl:pl-14">
+
+    <div class="flex h-full w-9/10">
+      <!-- The AG Grid component, with Dimensions, CSS Theme, Row Data, and Column Definition -->
+      <ag-grid-angular style="width: 100%; height: 100%;" [rowData]="rowData" [columnDefs]="columnDefs"
+                       [defaultColDef]="defaultColDef" />
+    </div>
+  </div>
+
+</div>
