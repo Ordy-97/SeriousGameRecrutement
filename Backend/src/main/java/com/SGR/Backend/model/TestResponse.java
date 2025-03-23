@@ -12,7 +12,7 @@ import java.util.Map;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Document(collection = "Test")
+@Document(collection = "TestResponse")
 @Getter
 @Setter
 public class TestResponse {
@@ -28,5 +28,7 @@ public class TestResponse {
 
     private Map<String, String> multipleChoiceAnswers; // Clé: ID de la question, Valeur: ID de la réponse choisie
     private Map<String, String> openAnswers; // Clé: ID de la question, Valeur: réponse en texte libre
+
+    private double score;
 
 }
