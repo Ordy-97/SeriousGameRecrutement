@@ -6,6 +6,8 @@ import { hugeSearch01 } from '@ng-icons/huge-icons';
 import { NgIconComponent, provideIcons } from '@ng-icons/core';
 import { Test } from '../../../shared/interfaces/test.interface';
 import { QuestionType } from '../../../shared/interfaces/questionType.enum';
+import { MatDialog } from '@angular/material/dialog';
+import { NewTestComponent } from '../new-test/new-test.component';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 @Component({
@@ -17,6 +19,8 @@ ModuleRegistry.registerModules([AllCommunityModule]);
 })
 export class TestComponent {
   title = 'TEST';
+
+  constructor(private dialog: MatDialog) {}
 
   rowData: Test[] = [
     {
@@ -77,4 +81,16 @@ export class TestComponent {
   defaultColDef: ColDef = {
     flex: 1,
   };
+
+  openModal(): void {
+    const dialogRef = this.dialog.open(NewTestComponent, {
+      panelClass: ['custom-modal-panel'],
+      data: {},
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('La modale est fermée');
+      console.log('Résultat :', result);
+    });
+  }
 }

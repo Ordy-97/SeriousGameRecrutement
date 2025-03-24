@@ -1,0 +1,77 @@
+<form [formGroup]="questionForm" (ngSubmit)="submit()" class="min-h-full w-full p-3 flex flex-col gap-4">
+
+
+  <div class="w-full">
+    <div class="flex items-center gap-3">
+      <label class="font-semibold">Type :</label>
+      <select formControlName="type" class="border border-gray-300 rounded-md px-2 py-1">
+        <option value="MULTIPLE_CHOICE">Multiple choice</option>
+        <option value="OPEN">Open questions</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Question + Image -->
+  <div class="w-full flex flex-col gap-2">
+    <label class="font-semibold">Question <span class="text-red-500">*</span></label>
+    <div class="flex flex-col md:flex-row gap-4">
+
+      <textarea
+        formControlName="questionText"
+        placeholder="Comment s'appelle votre professeur ?"
+        class="w-full md:w-2/3 h-32 p-1 rounded-md border border-gray-300 bg-white">
+      </textarea>
+
+
+      <div class="w-full md:w-1/3 h-32 bg-gray-100 border border-gray-300 rounded-md flex justify-center items-center cursor-pointer">
+        <span class="text-gray-400 text-3xl"><ng-icon name="hugeImageAdd01"></ng-icon></span>
+      </div>
+    </div>
+  </div>
+
+
+  <div formArrayName="choices" class="flex flex-col gap-4 w-full justify-center">
+    <label class="font-semibold">Choix <span class="text-red-500">*</span></label>
+
+    <!-- Boucle sur les réponses -->
+    <div *ngFor="let choice of choices.controls; let i = index" [formGroupName]="i" class="flex items-center gap-2">
+
+      <input
+        type="radio"
+        name="correctAnswer"
+        [checked]="choice.value.isCorrect"
+        (change)="setCorrectAnswer(i)" />
+
+      <input
+        type="text"
+        formControlName="text"
+        placeholder="Entrez une réponse"
+        class="flex-grow p-2 rounded-md border border-gray-300 bg-white" />
+
+      <button type="button" (click)="removeChoice(i)" class="text-red-500 hover:text-red-700 flex justify-center items-center">
+        <ng-icon name="hugeDelete04"></ng-icon>
+      </button>
+    </div>
+
+    <button
+      type="button"
+      (click)="addChoice()"
+      class="border border-dashed border-gray-400 px-4 py-2 rounded-md w-max text-gray-600 hover:bg-gray-100">
+      + Nouvelle réponse
+    </button>
+  </div>
+
+  <!-- Temps et Points -->
+  <div class="flex justify-start items-center gap-8 pt-4">
+
+    <div class="flex items-center gap-4">
+      <input
+        type="number"
+        formControlName="points"
+        class="w-20 p-2 border border-gray-300 rounded-md"
+        placeholder="Points" />
+      <span>Points</span>
+    </div>
+  </div>
+
+</form>
