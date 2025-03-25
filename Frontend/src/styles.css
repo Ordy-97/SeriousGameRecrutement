@@ -4,3 +4,11 @@
 body {
   font-family: 'Poppins', sans-serif;
 }
+.custom-modal-panel {
+  @apply w-[90vw] md:w-[60vw] lg:w-[50vw] h-auto max-h-[90vh] p-4 bg-white rounded-[15px];
+
+  /* Annule les valeurs par défaut d'Angular Material */
+  max-width: none !important;
+  min-width: 0 !important;
+  width: auto !important;
+}
