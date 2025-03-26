@@ -1,0 +1,49 @@
+<p>candidat-modal works!</p>
+<div class="fixed inset-0 flex items-center justify-center bg-gray-100 bg-opacity-90">
+
+    <div class="bg-white p-6 rounded-[25px] shadow-lg w-[400px]">
+      <!-- En-tête -->
+      <div class="flex justify-between items-center border-b pb-2">
+        <h4 class="text-xl font-semibold">Veillez renseignez vos informations</h4>
+        <button (click)="closeModal()" class="text-gray-500 hover:text-gray-800">
+          ✖
+        </button>
+      </div>
+  
+      <!-- Corps de la modale -->
+      <div class="mt-4">
+        <form #candidatForm="ngForm" (ngSubmit)="onSubmit(candidatForm)" class="flex flex-col gap-4">
+          
+          <div>
+            <label class="block text-gray-700 font-medium" for="name">Nom</label>
+            <input type="text" id="name" name="name" ngModel required
+              class="w-full px-3 py-2 border rounded-[10px] focus:ring focus:ring-red-300 outline-none shadow-sm">
+          </div>
+  
+          <div>
+            <label class="block text-gray-700 font-medium" for="email">Email</label>
+            <input type="email" id="email" name="email" ngModel required
+              class="w-full px-3 py-2 border rounded-[10px] focus:ring focus:ring-red-300 outline-none shadow-sm">
+          </div>
+  
+          <div>
+            <label class="block text-gray-700 font-medium" for="phone">Téléphone</label>
+            <input type="text" id="phone" name="phone" ngModel required
+              class="w-full px-3 py-2 border rounded-[10px] focus:ring focus:ring-red-300 outline-none shadow-sm">
+          </div>
+  
+          <!-- Bouton d'envoi -->
+          <button type="submit"
+            class="w-full bg-red-500 text-white font-semibold py-2 rounded-[10px] hover:bg-red-600 transition">
+            Envoyer
+          </button>
+        </form>
+  
+        <!-- Message de confirmation -->
+        <div *ngIf="confirmationMessage" class="mt-4 text-green-600 text-center">
+          {{ confirmationMessage }}
+        </div>
+      </div>
+    </div>
+  </div>
+  
