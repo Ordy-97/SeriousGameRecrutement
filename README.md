@@ -1,8 +1,8 @@
-#Procédure d'installation du projet
+# Procédure d'installation du projet
 
 -> Cloner le projet en local
 
-#1- Backend
+## 1- Backend
 
 
 -> Vérifier que Java et Maven sont bien installés :
@@ -22,13 +22,13 @@
 -> Démarrer le projet Spring
 
 
-#2- Frontend
+## 2- Frontend
 
 -> Vérifier que Node.js et Angular CLI sont installés
     node -v
     ng version 
     Sinon installer node et Angular CLI 
-    Si Node.js n’est pas installé, téléchargez-le depuis :🔗 https://nodejs.org/
+### node : téléchargez-le depuis :🔗 https://nodejs.org/
     Ensuite : "npm install -g @angular/cli" 
 
 -> Installer les dépendances Angular
