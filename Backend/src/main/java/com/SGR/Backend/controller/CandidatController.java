@@ -8,6 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
+import java.util.List;
+
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
@@ -27,7 +29,11 @@ public class CandidatController {
             return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
         }
 
+    }
 
+    @GetMapping("/getAllCandidats")
+    public List<Candidat> getAllCandidats(){
+        return candidatService.findAll();
     }
 
 }
