@@ -17,7 +17,7 @@ export class AuthService {
 
   private TOKEN_KEY = 'token';
   private EXPIRATION_KEY = 'tokenExpiration';
-  private EXPIRATION_TIME = 10 * 60 * 1000;
+  private EXPIRATION_TIME = 60 * 60 * 1000;
 
   login(credentials: { name: string; password: string }) {
     console.log(credentials);
@@ -27,6 +27,7 @@ export class AuthService {
         (res) => {
           console.log(res);
           this.saveToken(res.token);
+          localStorage.setItem('emailAdmin', credentials.name);
           this.router.navigate(['/admin']);
         },
         (error) => {
@@ -62,6 +63,7 @@ export class AuthService {
   }
 
   removeToken() {
+    localStorage.removeItem('emailAdmin');
     sessionStorage.removeItem(this.TOKEN_KEY);
     sessionStorage.removeItem(this.EXPIRATION_KEY);
   }

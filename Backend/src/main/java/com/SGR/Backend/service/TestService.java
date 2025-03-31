@@ -1,5 +1,7 @@
 package com.SGR.Backend.service;
 
+import com.SGR.Backend.dto.QuestionDto;
+import com.SGR.Backend.dto.TestCreationDto;
 import com.SGR.Backend.dto.TestDto;
 import com.SGR.Backend.model.Question;
 import com.SGR.Backend.model.Test;
@@ -27,6 +29,9 @@ public class TestService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private QuestionService questionService;
 
     /**
      * Crée un nouveau Test */
@@ -118,5 +123,33 @@ public class TestService {
             
             return testRepository.save(existingTest);
         });
+    }
+
+    public Test createTestWithQuestions(TestCreationDto testCreationDto) {
+
+        // Liste pour stocker les IDs des questions
+        List<Question> questions = new ArrayList<>();
+
+        // Boucle pour créer les questions
+        for (QuestionDto questionDto : testCreationDto.questions()) {
+            Question createdQuestion = questionService.saveQuestion(questionDto);
+            questions.add(createdQuestion);
+        }
+
+        // Créer le test avec les IDs des questions
+        Test test = new Test();
+        test.setName(testCreationDto.name());
+        test.setDescription(testCreationDto.description());
+        test.setCreatedAt(testCreationDto.createdAt());
+        test.setQuestions(questions);
+
+        if (testCreationDto.createdByEmail() != null) {
+            Test test1;
+            test1 = test;
+            User user = userRepository.findUserByEmail(testCreationDto.createdByEmail());
+            test1.setCreatedBy(user);
+        }
+
+        return testRepository.save(test);
     }
 }
