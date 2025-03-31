@@ -1,3 +1,4 @@
+import { TestService } from './../../../shared/services/test-service/test.service';
 import { Component } from '@angular/core';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
 import { AgGridAngular } from 'ag-grid-angular'; // Angular Data Grid Component
@@ -20,34 +21,23 @@ ModuleRegistry.registerModules([AllCommunityModule]);
 export class TestComponent {
   title = 'TEST';
 
-  constructor(private dialog: MatDialog) {}
+  listTests: Test[] = [];
 
-  rowData: Test[] = [
-    {
-      id: 'test001',
-      name: 'Test de Logique',
-      createdAt: '2024-03-01T12:00:00Z',
-      description: 'Un test pour évaluer les compétences logiques',
-      questions: [
-        {
-          id: 'question001',
-          name: 'Quelle est la suite logique ?',
-          questionType: QuestionType.MULTIPLE_CHOICE,
-          answers: [
-            {
-              id: 'answer001',
-              text: 'Réponse A',
-            },
-            {
-              id: 'answer002',
-              text: 'Réponse B',
-            },
-          ],
-          correctAnswerId: 'answer002',
-        },
-      ],
-    },
-  ];
+  constructor(
+    private dialog: MatDialog,
+    private testService: TestService,
+  ) {
+    this.testService.getTests().subscribe((data) => {
+      this.listTests = data;
+      console.log('Liste des tests:', this.listTests);
+      this.rowData = this.listTests.map((test) => ({
+        ...test,
+        createdAt: new Date(test.createdAt).toLocaleDateString('fr-FR'),
+      }));
+    });
+  }
+
+  rowData: Test[] = [];
 
   columnDefs: ColDef[] = [
     {
