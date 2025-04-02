@@ -8,6 +8,7 @@ import com.SGR.Backend.repository.TestResponseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -77,6 +78,7 @@ public class TestResponseService {
         testResponse.setMultipleChoiceAnswers(testResponseDto.multipleChoiceAnswers());
         testResponse.setOpenAnswers(testResponseDto.openAnswers());
         testResponse.setScore(score);
+        testResponse.setDateSoumission(new Date());
 
         // Enregistrer la réponse du test en base de données
         testResponseRepository.save(testResponse);
