@@ -31,7 +31,7 @@ export class AdminLoginComponent {
 
   ngOnInit() {
     this.form = new FormGroup({
-      email: new FormControl<string>('', [Validators.required, Validators.email]),
+      name: new FormControl<string>('', [Validators.required]),
       password: new FormControl<string>('', [Validators.required]),
     });
   }
@@ -40,7 +40,7 @@ export class AdminLoginComponent {
 
     if(this.form.valid){
       console.log(this.form.value);
-      this.authService.login({email: this.form.value.email, password: this.form.value.password});
+      this.authService.login({name: this.form.value.name, password: this.form.value.password});
     } else {
       this.loginError = 'Please enter a valid email and password';
     }

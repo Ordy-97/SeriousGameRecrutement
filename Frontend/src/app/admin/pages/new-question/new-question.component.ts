@@ -9,10 +9,19 @@ import { NgIconComponent } from '@ng-icons/core';
 
 @Component({
   selector: 'app-new-question',
-  imports: [MatSelectModule, MatFormFieldModule, NgFor, NgIconComponent, FormsModule, ReactiveFormsModule],
-  viewProviders: [provideIcons({ hugeDelete04, hugeTimeQuarter, hugeImageAdd01 })],
+  imports: [
+    MatSelectModule,
+    MatFormFieldModule,
+    NgFor,
+    NgIconComponent,
+    FormsModule,
+    ReactiveFormsModule,
+  ],
+  viewProviders: [
+    provideIcons({ hugeDelete04, hugeTimeQuarter, hugeImageAdd01 }),
+  ],
   templateUrl: './new-question.component.html',
-  styleUrl: './new-question.component.css'
+  styleUrl: './new-question.component.css',
 })
 export class NewQuestionComponent implements OnInit {
   questionForm!: FormGroup;
@@ -25,46 +34,44 @@ export class NewQuestionComponent implements OnInit {
 
   initForm() {
     this.questionForm = this.fb.group({
-      type: ['MULTIPLE_CHOICE', Validators.required], // Type de question
-      questionText: ['', Validators.required],
-      choices: this.fb.array([
-        this.createChoice(), // Démarre avec une réponse
+      questionType: ['MULTIPLE_CHOICE', Validators.required], // Type de question
+      name: ['', Validators.required],
+      answers: this.fb.array([
+        this.createAnswer(0), // Démarre avec une réponse
       ]),
-      points: [3, [Validators.required, Validators.min(1)]], // Points
+      correctAnswerId: [null, Validators.required], // ID de la réponse correcte
     });
   }
 
-
-  createChoice(): FormGroup {
+  createAnswer(i: number): FormGroup {
     return this.fb.group({
+      id: [i, Validators.required],
       text: ['', Validators.required],
-      isCorrect: [false]
     });
   }
 
-  get choices(): FormArray {
-    return this.questionForm.get('choices') as FormArray;
+  get answers(): FormArray {
+    return this.questionForm.get('answers') as FormArray;
   }
 
-  addChoice() {
-    this.choices.push(this.createChoice());
+  addAnswer() {
+    this.answers.push(this.createAnswer(this.answers.length));
+    console.log(this.answers.value);
   }
 
-  removeChoice(index: number) {
-    if (this.choices.length > 1) {
-      this.choices.removeAt(index);
+  removeAnswer(index: number) {
+    if (this.answers.length > 1) {
+      this.answers.removeAt(index);
     }
   }
 
   setCorrectAnswer(selectedIndex: number) {
-    this.choices.controls.forEach((group, index) => {
-      (group as FormGroup).patchValue({
-        isCorrect: index === selectedIndex
-      });
+    this.questionForm.patchValue({
+      correctAnswerId: selectedIndex,
     });
   }
 
   submit() {
-    console.log(this.choices.value);
+    console.log(this.answers.value);
   }
 }

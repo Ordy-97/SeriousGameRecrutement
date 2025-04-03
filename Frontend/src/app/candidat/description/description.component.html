@@ -1,0 +1,19 @@
+<!-- Barre de navigation avec le logo -->
+<nav class="navbar">
+  <img src="assets/CGI_logo.svg" alt="CGI Logo" class="logo">
+</nav>
+
+<!-- Contenu centré -->
+<div class="description-container">
+  <h1>Test de Logique</h1>
+  <p>
+    {{ steps[currentStep] }}
+  </p>
+</div>
+
+<!-- Bouton suivant ou commencer le test -->
+<div class="button-container">
+  <button (click)="nextStep()">
+    {{ currentStep < steps.length - 1 ? 'Suivant' : 'Commencer le Test' }}
+  </button>
+</div>

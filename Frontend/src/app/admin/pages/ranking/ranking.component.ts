@@ -20,66 +20,83 @@ ModuleRegistry.registerModules([AllCommunityModule]);
 export class RankingComponent {
   title = 'RANKING';
 
-  constructor(private rankingService: RankingService) {}
+  constructor(private rankingService: RankingService) {
+    this.rankingService.getRanking().subscribe((data) => {
+      this.rowData = data.map((resultat) => ({
+        ...resultat,
+        dateSoumission: new Date(resultat.dateSoumission).toLocaleDateString(
+          'fr-FR',
+        ),
+      }));
+    });
+  }
 
   rowData: ResultatCandidat[] = [
     {
       id: 'resultat123',
-      score: 85,
-      dateSoumission: '2024-03-05T15:00:00Z',
-      testResponse: {
-        id: 'response456',
-        candidat: {
-          id: 789,
-          name: 'John Doe',
-          email: 'john.doe@example.com',
-          telephone: '0601020304',
-        },
-        test: {
-          id: 'test001',
-          name: 'Test de Logique',
-          createdAt: '2024-03-01T12:00:00Z',
-          description: 'Un test pour évaluer les compétences logiques',
-          questions: [
-            {
-              id: 'question001',
-              name: 'Quelle est la suite logique ?',
-              questionType: QuestionType.MULTIPLE_CHOICE,
-              answers: [
-                {
-                  id: 'answer001',
-                  text: 'Réponse A',
-                },
-                {
-                  id: 'answer002',
-                  text: 'Réponse B',
-                },
-              ],
-              correctAnswerId: 'answer002',
-            },
-          ],
-          createdBy: {
-            id: 1,
-            name: 'Admin',
-            email: 'adaa',
-            password: '1234',
-            role: 'admin',
+      candidat: {
+        id: 789,
+        name: 'John Doe',
+        email: 'john.doe@example.com',
+        telephone: '0601020304',
+      },
+      test: {
+        id: 'test001',
+        name: 'Test de Logique',
+        createdAt: '2024-03-01T12:00:00Z',
+        description: 'Un test pour évaluer les compétences logiques',
+        questions: [
+          {
+            id: 'question001',
+            name: 'Quelle est la suite logique ?',
+            questionType: QuestionType.MULTIPLE_CHOICE,
+            answers: [
+              {
+                id: 'answer001',
+                text: 'Réponse A',
+              },
+              {
+                id: 'answer002',
+                text: 'Réponse B',
+              },
+            ],
+            correctAnswerId: 'answer002',
           },
-        },
-        multipleChoiceAnswers: {
-          question001: 'answer002',
-        },
-        openAnswers: {
-          question002: "Je pense que c'est lié au contexte.",
+        ],
+        createdBy: {
+          id: 1,
+          name: 'Admin',
+          email: 'adaa',
+          password: '1234',
+          role: 'admin',
         },
       },
-      success: true,
+      multipleChoiceAnswers: {
+        question001: 'answer002',
+      },
+      openAnswers: {
+        question002: "Je pense que c'est lié au contexte.",
+      },
+      score: 85,
+      dateSoumission: '2024-03-05T15:00:00Z',
     },
   ];
   columnDefs: ColDef[] = [
     {
       headerName: 'Candidat',
-      field: 'testResponse.candidat.name',
+      field: 'candidat.name',
+      sortable: true,
+      filter: true,
+    },
+    {
+      headerName: 'Email',
+      field: 'candidat.email',
+      sortable: true,
+      filter: true,
+    },
+    {
+      headerName: 'Telephone',
+      field: 'candidat.telephone',
       sortable: true,
       filter: true,
     },
@@ -92,17 +109,16 @@ export class RankingComponent {
     },
     {
       headerName: 'Test',
-      field: 'testResponse.test.name',
+      field: 'test.name',
       sortable: true,
       filter: true,
     },
     {
       headerName: 'Créé par',
-      field: 'testResponse.test.createdBy.name',
+      field: 'test.createdBy.email',
       sortable: true,
       filter: true,
     },
-    { headerName: 'Succès', field: 'success', sortable: true, filter: true },
   ];
 
   defaultColDef: ColDef = {

@@ -1,5 +1,6 @@
 package com.SGR.Backend.controller;
 
+import com.SGR.Backend.dto.TestCreationDto;
 import com.SGR.Backend.dto.TestDto;
 import com.SGR.Backend.model.Test;
 import com.SGR.Backend.service.TestService;
@@ -34,6 +35,12 @@ public class TestController {
         return ResponseEntity.ok(testService.getAllTests());
     }
 
+
+    @PostMapping("/createwithquestions")
+    public ResponseEntity<Test> createTestWithQuestions(@RequestBody TestCreationDto testCreationDto) {
+        Test test = testService.createTestWithQuestions(testCreationDto);
+        return ResponseEntity.ok(test);
+    }
     /**
      * Endpoint pour récupérer un test par ID
      */
