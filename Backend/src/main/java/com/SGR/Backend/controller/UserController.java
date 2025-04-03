@@ -1,5 +1,6 @@
 package com.SGR.Backend.controller;
 
+import com.SGR.Backend.dto.AuthResponse;
 import com.SGR.Backend.dto.CredentialsDto;
 import com.SGR.Backend.model.User;
 import com.SGR.Backend.service.AuthUserService;
@@ -34,9 +35,9 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> loginUser(@RequestBody CredentialsDto credentialsDto) {
+    public ResponseEntity<AuthResponse> loginUser(@RequestBody CredentialsDto credentialsDto) {
 
         String result = authUserService.verifyUser(credentialsDto);
-        return new ResponseEntity<>(result, HttpStatus.OK);
+        return new ResponseEntity<>(new AuthResponse(result), HttpStatus.OK);
     }
 }

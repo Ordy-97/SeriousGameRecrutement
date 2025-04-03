@@ -1,0 +1,55 @@
+/* Navbar avec le logo */
+.navbar {
+  background-color: white;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  width: 120px;
+}
+
+/* Conteneur de la description */
+.description-container {
+  width: 50%;
+  margin: auto;
+  text-align: center;
+  padding: 30px;
+  border: 2px solid #d52b1e;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 100px;
+}
+
+h1 {
+  color: #d52b1e;
+}
+
+p {
+  font-size: 18px;
+  color: #333;
+}
+
+/* Conteneur du bouton */
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+button {
+  background-color: #d52b1e;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #b2221a;
+}
