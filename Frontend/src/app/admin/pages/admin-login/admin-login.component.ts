@@ -42,7 +42,7 @@ export class AdminLoginComponent {
       console.log(this.form.value);
       this.authService.login({name: this.form.value.name, password: this.form.value.password});
     } else {
-      this.loginError = 'Please enter a valid email and password';
+      this.loginError = 'Veuillez entrer une adresse e-mail ou un mot de passe valide.';
     }
   }
 }

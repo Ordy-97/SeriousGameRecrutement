@@ -5,12 +5,12 @@
         <img class="object-cover h-full w-full" src="assets/CGI_logo.svg" alt="" srcset="">
       </div>
       <p class="font-semibold text-center">
-        Connect you to
-        <span class="text-red-500">CREATE</span> 
-        and  
-        <span class="text-red-500"> MANAGE </span> <br> 
-        your 
-        <span class="text-red-500"> TESTS </span>
+        Connectez-vous pour
+        <span class="text-red-500">Créer</span> 
+        et   
+        <span class="text-red-500"> Gérer </span> <br> 
+        vos 
+        <span class="text-red-500"> Tests </span>
       </p>
       <form [formGroup]="form" class="flex flex-col gap-2">
         <div class="flex flex-col">
@@ -20,13 +20,13 @@
             <ng-icon name="hugeUser"></ng-icon>
             <input
                 class="px-2 h-5 w-[300px] outline-none border-none"
-                placeholder="Username"
+                placeholder="Nom d'utilisateur"
                 type="email"
                 formControlName="name"
             />
           </div>
           @if(form.get('email')?.invalid && form.get('email')?.touched){
-            <div class="text-red-500 text-sm">*Email is required</div>
+            <div class="text-red-500 text-sm">*Le champ Email est obligatoire</div>
           }
         </div>
         <div class="flex flex-col">
@@ -36,25 +36,25 @@
             <ng-icon name="hugeKey01"></ng-icon>
             <input
                 class="px-2 h-5 w-[300px] outline-none border-none"
-                placeholder="Password"
+                placeholder="Mot de passe"
                 type="password"
                 formControlName="password"
             />
           </div>
           @if(form.get('password')?.invalid && form.get('password')?.touched){
-            <div class="text-red-500 text-sm flex">*Password is required</div>
+            <div class="text-red-500 text-sm flex">*Le mot de passe est obligatoire</div>
           }
         </div>
         <div class="flex items-center space-x-2 mb-3">
           <input type="checkbox" class="w-4 h-4">
-          <label class="text-gray-600">Remind me later</label>
+          <label class="text-gray-600">Se souvenir de moi</label>
         </div>
         <button
           class="font-semibold bg-white border p-3 text-red-500 hover:bg-red-500 hover:text-white transition duration-500 rounded-[10px]"
           type="submit"
           (click)="login()"
         >
-          Sign in
+          Se connecter
         </button>
       </form>
       @if(loginError){

@@ -68,19 +68,19 @@ export class AdminSidebarComponent {
       title: '',
       elements: [
         {
-          label: 'Home',
+          label: 'Acceuil',
           iconDefault: 'octHome',
           iconHover: 'octHomeFill',
           path: '/admin',
         },
         {
-          label: 'Profile',
+          label: 'Profil',
           iconDefault: 'octPerson',
           iconHover: 'octPersonFill',
           path: '/admin/profile',
         },
         {
-          label: 'Add user',
+          label: "Utilisateur",
           iconDefault: 'octPersonAdd',
           iconHover: 'octPersonAdd',
           path: '/admin/add-user',
@@ -88,7 +88,7 @@ export class AdminSidebarComponent {
       ],
     },
     {
-      title: 'TEST MANAGEMENT',
+      title: 'Gestion des Tests',
       elements: [
         {
           label: 'Test',
@@ -97,7 +97,7 @@ export class AdminSidebarComponent {
           path: '/admin/test',
         },
         {
-          label: 'Ranking',
+          label: 'Classement',
           iconDefault: 'remixLineChartLine',
           iconHover: 'remixLineChartFill',
           path: '/admin/ranking',
@@ -114,7 +114,7 @@ export class AdminSidebarComponent {
           path: '/admin/faq',
         },
         {
-          label: 'Tips & Tricks',
+          label: 'Conseils & astuces',
           iconDefault: 'remixErrorWarningLine',
           iconHover: 'remixErrorWarningFill',
           path: '/admin/tips',
