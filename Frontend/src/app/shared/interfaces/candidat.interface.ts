@@ -1,5 +1,5 @@
 export interface Candidat {
-  id: number;
+  id?: number;
   name: string;
   email: string;
   telephone?: string;

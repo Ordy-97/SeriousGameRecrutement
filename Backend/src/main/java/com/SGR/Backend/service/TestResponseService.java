@@ -33,10 +33,27 @@ public class TestResponseService {
     public String submitTest(TestResponseDto testResponseDto) {
         // Vérifier si le test et le candidat existent
         Optional<Test> testOpt = testRepository.findById(testResponseDto.testId());
-        Optional<Candidat> candidatOpt = candidatRepository.findByEmail(testResponseDto.candidatEmail());
+        Optional<Candidat> candidatOpt = candidatRepository.findByEmail(testResponseDto.candidat().email());
+        System.out.println(candidatOpt);
 
-        if (testOpt.isEmpty() || candidatOpt.isEmpty()) {
-            throw new RuntimeException("Test ou Candidat introuvable !");
+        if(!candidatOpt.isEmpty()){
+            Candidat candidat = candidatOpt.get();
+            // Vérifier si le candidat a déjà soumis le test
+            if (candidat.getTestResponses().stream().anyMatch(tr -> tr.getTest().getId().equals(testResponseDto.testId()))) {
+                throw new RuntimeException("Le candidat a déjà soumis ce test !");
+            }
+        }else {
+            // Si le candidat n'existe pas, on le crée
+            Candidat newCandidat = new Candidat();
+            newCandidat.setName(testResponseDto.candidat().name());
+            newCandidat.setEmail(testResponseDto.candidat().email());
+            newCandidat.setTelephone(testResponseDto.candidat().telephone());
+            candidatOpt = Optional.of(newCandidat);
+            candidatRepository.save(newCandidat);
+        }
+
+        if (testOpt.isEmpty()) {
+            throw new RuntimeException("Test introuvable !");
         }
 
         Test test = testOpt.get();
@@ -46,11 +63,7 @@ public class TestResponseService {
             String questionId = question.getId();
 
             boolean hasMultipleChoiceAnswer = testResponseDto.multipleChoiceAnswers().containsKey(questionId);
-            boolean hasOpenAnswer = testResponseDto.openAnswers().containsKey(questionId);
 
-            if (!hasMultipleChoiceAnswer && !hasOpenAnswer) {
-                throw new RuntimeException("Toutes les questions doivent être répondues !");
-            }
         }
 
         // Calcul du score basé sur les questions à choix multiples (QCM)

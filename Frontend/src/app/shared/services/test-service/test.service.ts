@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from '../../../admin/auth-service/auth.service';
 import { Test } from '../../interfaces/test.interface';
 import { Observable } from 'rxjs';
+import { TestResponse } from '../../interfaces/testResponse.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -24,12 +25,16 @@ export class TestService {
   }
 
   getTests(): Observable<Test[]> {
-    return this.http.get<Test[]>(`${this.baseUrl}`, { headers: this.header });
+    return this.http.get<Test[]>(`${this.baseUrl}`);
   }
 
   createTestWithQuestions(test: any) {
     return this.http.post(`${this.baseUrl}/createwithquestions`, test, {
       headers: this.header,
     });
+  }
+
+  submitTestResponse(TestResponse: TestResponse): Observable<any> {
+    return this.http.post(`${environment.apiUrl}/test/submit`, TestResponse);
   }
 }

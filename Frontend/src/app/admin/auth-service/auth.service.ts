@@ -28,7 +28,7 @@ export class AuthService {
           console.log(res);
           this.saveToken(res.token);
           localStorage.setItem('emailAdmin', credentials.name);
-          this.router.navigate(['/admin']);
+          this.router.navigate(['/admin/home']);
         },
         (error) => {
           console.error('Erreur de connexion', error);
