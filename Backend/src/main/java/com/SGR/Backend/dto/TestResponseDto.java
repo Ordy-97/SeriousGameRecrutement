@@ -4,8 +4,8 @@ import jakarta.validation.constraints.NotNull;
 import java.util.Map;
 
 public record TestResponseDto(
-        @NotNull String candidatEmail,
+        @NotNull CandidatDto candidat,
         @NotNull String testId,
-        @NotNull Map<String, String> multipleChoiceAnswers,
-        @NotNull Map<String, String> openAnswers
+        Map<String, String> multipleChoiceAnswers,
+        Map<String, String> openAnswers
 ) {}

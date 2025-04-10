@@ -10,7 +10,7 @@
         <input
           [(ngModel)]="testName"
           class="text-lg font-semibold px-4 py-2 outline-none border border-gray-300 rounded-md w-full"
-          placeholder="Test Name"
+          placeholder="Nom du Test"
         />
       </div>
   
@@ -18,13 +18,13 @@
       <div class="flex gap-2">
         <button
           class="flex items-center gap-2 font-semibold bg-white border p-3 text-purple-500 hover:bg-purple-500 hover:text-white transition duration-300 rounded-[10px]"
-          (click)="publishTest()">
-          Publish
+          (click)="publishTest()" mat-button mat-dialog-close>
+          Publier
         </button>
         <button
           class="font-semibold bg-white border p-3 text-red-500 hover:bg-red-500 hover:text-white transition duration-300 rounded-[10px]"
           mat-button mat-dialog-close>
-          Cancel
+          Annuler
         </button>
       </div>
     </div>

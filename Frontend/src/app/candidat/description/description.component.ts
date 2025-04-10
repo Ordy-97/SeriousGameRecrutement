@@ -26,6 +26,6 @@ export class DescriptionComponent {
   }
 
   startTest() {
-    this.router.navigate(['/admin/test']);  // Redirige vers la page du test
+    this.router.navigate(['/candidat/testResponse']); // Redirige vers la page du test
   }
 }

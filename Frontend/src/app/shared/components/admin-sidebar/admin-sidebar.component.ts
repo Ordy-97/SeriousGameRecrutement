@@ -22,6 +22,7 @@ import {
 } from '@ng-icons/remixicon';
 import { NgFor } from '@angular/common';
 import path from 'node:path';
+import { AuthService } from '../../../admin/auth-service/auth.service';
 
 @Component({
   selector: 'app-admin-sidebar',
@@ -45,6 +46,7 @@ import path from 'node:path';
       remixLogoutBoxFill,
     }),
   ],
+  providers: [AuthService],
   templateUrl: './admin-sidebar.component.html',
   styleUrl: './admin-sidebar.component.css',
 })
@@ -52,6 +54,12 @@ export class AdminSidebarComponent {
   hoveredMenu = -1;
   hoveredIndex = -1; // -1 signifie qu'aucun élément n'est survolé
   hoverLogOut = false;
+
+  constructor(private authService: AuthService) {}
+
+  logOut() {
+    this.authService.logout();
+  }
 
   setHovered(index: number, menuIndex: number): void {
     this.hoveredIndex = index;
@@ -68,19 +76,19 @@ export class AdminSidebarComponent {
       title: '',
       elements: [
         {
-          label: 'Home',
+          label: 'Acceuil',
           iconDefault: 'octHome',
           iconHover: 'octHomeFill',
-          path: '/admin',
+          path: '/admin/home',
         },
         {
-          label: 'Profile',
+          label: 'Profil',
           iconDefault: 'octPerson',
           iconHover: 'octPersonFill',
           path: '/admin/profile',
         },
         {
-          label: 'Add user',
+          label: "Utilisateur",
           iconDefault: 'octPersonAdd',
           iconHover: 'octPersonAdd',
           path: '/admin/add-user',
@@ -88,7 +96,7 @@ export class AdminSidebarComponent {
       ],
     },
     {
-      title: 'TEST MANAGEMENT',
+      title: 'Gestion des Tests',
       elements: [
         {
           label: 'Test',
@@ -97,7 +105,7 @@ export class AdminSidebarComponent {
           path: '/admin/test',
         },
         {
-          label: 'Ranking',
+          label: 'Classement',
           iconDefault: 'remixLineChartLine',
           iconHover: 'remixLineChartFill',
           path: '/admin/ranking',
@@ -114,7 +122,7 @@ export class AdminSidebarComponent {
           path: '/admin/faq',
         },
         {
-          label: 'Tips & Tricks',
+          label: 'Conseils & astuces',
           iconDefault: 'remixErrorWarningLine',
           iconHover: 'remixErrorWarningFill',
           path: '/admin/tips',
